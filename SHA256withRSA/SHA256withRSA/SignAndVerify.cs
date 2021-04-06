@@ -7,6 +7,7 @@ using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Utilities.Encoders;
 using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SHA256withRSA
@@ -22,6 +23,7 @@ namespace SHA256withRSA
             Size1024 = 1024,
             Size2048 = 2048
         }
+
         /// <summary>
         /// Generate random keypair - public and private key
         /// </summary>
@@ -75,7 +77,6 @@ namespace SHA256withRSA
         public string GenerateSignatureHex(string sourceData, RsaKeyParameters privateKey)
         {
             byte[] tmpSource = Encoding.ASCII.GetBytes(sourceData);
-
             ISigner sign = SignerUtilities.GetSigner(PkcsObjectIdentifiers.Sha256WithRsaEncryption.Id);
             sign.Init(true, privateKey);
             sign.BlockUpdate(tmpSource, 0, tmpSource.Length);
@@ -170,6 +171,43 @@ namespace SHA256withRSA
 
             return ss;
 
+        }
+
+        public byte[] DecryptionRSA(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] decryptedData;
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey);
+                    decryptedData = RSA.Decrypt(Data, DoOAEPPadding);
+                }
+                return decryptedData;
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
+        public byte[] EncryptionRSA(byte[] Data, RSAParameters RSAKey, bool DoOAEPPadding)
+        {
+            try
+            {
+                byte[] encryptedData;
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+                    RSA.ImportParameters(RSAKey);
+                    encryptedData = RSA.Encrypt(Data, DoOAEPPadding);
+                }
+                return encryptedData;
+            }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
     }
 }

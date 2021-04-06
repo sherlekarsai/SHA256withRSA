@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EncryptDecryptRSA.cs" />
     <Compile Include="SignAndVerify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

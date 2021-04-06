@@ -1,0 +1,3 @@
+ var keys = RSAWrapper.RSAKeys.GenerateKeys(512);
+            var encdata = RSAWrapper.RSAKeys.Encrypt("Sai Sherlekar", keys["public"],true);
+            var cleardata = RSAWrapper.RSAKeys.Decrypt(encdata, keys["private"], true);

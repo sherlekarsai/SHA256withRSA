@@ -5,3 +5,11 @@ E:\sai work\rsa\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.csproj.CoreC
 E:\sai work\rsa\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.csproj.CopyComplete
 E:\sai work\rsa\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.dll
 E:\sai work\rsa\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.pdb
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\bin\Debug\SHA256withRSA.dll
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\bin\Debug\SHA256withRSA.pdb
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\bin\Debug\BouncyCastle.Crypto.dll
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.csprojAssemblyReference.cache
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.csproj.CoreCompileInputs.cache
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.csproj.CopyComplete
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.dll
+E:\sai work\MyGit\SHA256WithRSA\SHA256withRSA\SHA256withRSA\obj\Debug\SHA256withRSA.pdb
