@@ -271,12 +271,17 @@ namespace RSAWrapper
         /// <param name="key">Clear key</param>
         /// <param name="OAEP">OAEP apdding</param>
         /// <param name="IsXML">Key is XML or plain text</param>
+        /// <param name="IsHex">Hex = false, base64 true</param>
         /// <returns></returns>
-        private static string Encrypt(string msg, string key, bool OAEP, bool IsXML)
+        public static string Encrypt(string msg, string key, bool OAEP, bool IsXML, bool IsHex)
         {
             RSACryptoServiceProvider ObjRSA = ReadPublicKey(key,IsXML);
             var strEncdata = ObjRSA.Encrypt(Encoding.UTF8.GetBytes(msg), OAEP);
+            if(IsHex)
             return Convert.ToBase64String(strEncdata);
+            else
+            return Convert.ToBase64String(strEncdata);
+
         }
         /// <summary>
         /// RSA Decryption 
@@ -285,12 +290,26 @@ namespace RSAWrapper
         /// <param name="key">Clear key</param>
         /// <param name="OAEP">OAEP apdding</param>
         /// <param name="IsXML">Key is XML or plain text</param>
+        /// <param name="IsHex">Hex = false, base64 true</param>
         /// <returns></returns>
-        public static string Decrypt(string msg, string key, bool OAEP, bool IsXML)
+        public static string Decrypt(string msg, string key, bool OAEP, bool IsXML, bool IsHex)
         {
             RSACryptoServiceProvider ObjRSA = ReadPrivateKey(key, IsXML);
-            var strdata = ObjRSA.Decrypt(Convert.FromBase64String(msg), OAEP);
+            byte[] msgbyte;
+            if (IsHex)
+                msgbyte = Convert.FromBase64String(msg);
+            else
+                msgbyte = StringToByteArray(msg);
+            var strdata = ObjRSA.Decrypt(msgbyte, OAEP);
             return Encoding.UTF8.GetString(strdata);
+        }
+        public static byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
         }
         /// <summary>
         /// Sign data using RSA 256 SHA

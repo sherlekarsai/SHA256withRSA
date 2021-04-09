@@ -16,16 +16,34 @@ namespace ConsoleApp1
     /// </summary>
     public class Program
     {
-       [STAThread]
+        //[STAThread]
+        //public static void Main(string[] args)
+        //{
+        //    Dictionary<string, string> keys = RSAWrapper.RSAKeys.GenerateKeys(512);
+        //    //Keys is Dictionary<string,string> of public private key - you can read private public key from file 
+        //    string publicKey = keys["public"];//This data you can read from file
+        //    string privateKey = File.ReadAllText("E:\\AESPrivateKeyPEM.pem");//This data you can read from file
+
+        //    var encdata = RSAWrapper.RSAKeys.Encrypt("Sai Sherlekar", publicKey, true, false,false);
+        //    //var encdata = "7A8D4DA2B20DD9E976EA37124B21018E6C1EBE51C0C794B56E16654A642689ECE233A378C714CD3471D17EA9F13E98163A90BCB76E8ADDE703F20589BC89730C";
+        //    var cleardata = RSAWrapper.RSAKeys.Decrypt(encdata, privateKey, true, false,false);
+
+        //    var signData = RSAWrapper.RSAKeys.SignDataSHA256("Sai Sherlekar", privateKey, false);
+        //    var result = RSAWrapper.RSAKeys.VerifyDataSHA256(publicKey, "Sai Sherlekar", signData, false);
+
+
+        //}
+
+        [STAThread]
         public static void Main(string[] args)
         {
-            Dictionary<string,string> keys = RSAWrapper.RSAKeys.GenerateKeys(512);
+            Dictionary<string, string> keys = RSAWrapper.RSAKeys.GenerateKeys(512);
             //Keys is Dictionary<string,string> of public private key - you can read private public key from file 
             string publicKey = keys["public"];//This data you can read from file
             string privateKey = keys["private"];//This data you can read from file
 
-            var encdata = RSAWrapper.RSAKeys.Encrypt("Sai Sherlekar", publicKey, true,false);
-            var cleardata = RSAWrapper.RSAKeys.Decrypt(encdata, privateKey, true, false);
+            var encdata = RSAWrapper.RSAKeys.Encrypt("Sai Sherlekar", publicKey, true, false, false);
+            var cleardata = RSAWrapper.RSAKeys.Decrypt(encdata, privateKey, true, false, false);
 
             var signData = RSAWrapper.RSAKeys.SignDataSHA256("Sai Sherlekar", privateKey, false);
             var result = RSAWrapper.RSAKeys.VerifyDataSHA256(publicKey, "Sai Sherlekar", signData, false);
@@ -52,7 +70,7 @@ namespace ConsoleApp1
             // validates the signature by using the PUBLIC key
             var isSignatureValid = sha256withrsa.VerifySignatureHex(textToSign, signature, publickeyRSA);
         }
-        
+
     }
 
 }
